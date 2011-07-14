@@ -477,6 +477,8 @@ Used by jit-lock for dynamic highlighting."
   :init-value (not (or noninteractive emacs-basic-display))
   :group 'rainbow-delimiters)
 
+;;;###autoload(custom-initialize-delay 'global-rainbow-delimiters-mode nil)
+
 (provide 'rainbow-delimiters)
 
 ;;; rainbow-delimiters.el ends here.
