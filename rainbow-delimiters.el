@@ -384,22 +384,24 @@ DEPTH is the nested depth at LOC, which determines the face to use.
 Sets text properties:
 `font-lock-face' to the appropriate delimiter face.
 `rear-nonsticky' to prevent color from bleeding into subsequent characters typed by the user."
-  (with-silent-modifications
-    (let ((delim-face (if (<= depth 0)
-                          "rainbow-delimiters-unmatched-face"
-                        (rainbow-delimiters-depth-face depth))))
-      ;; (when (eq depth -1) (message "Unmatched delimiter at char %s." loc))
-      (add-text-properties loc (1+ loc)
-                           `(font-lock-face ,delim-face
-                             rear-nonsticky t)))))
+  (if (not (member 'face (text-properties-at loc)))
+      (with-silent-modifications
+        (let ((delim-face (if (<= depth 0)
+                              "rainbow-delimiters-unmatched-face"
+                            (rainbow-delimiters-depth-face depth))))
+          ;; (when (eq depth -1) (message "Unmatched delimiter at char %s." loc))
+          (add-text-properties loc (1+ loc)
+                               `(font-lock-face ,delim-face
+                                                rear-nonsticky t))))))
 
 
 (defsubst rainbow-delimiters-unpropertize-delimiter (loc)
   "Remove text properties set by rainbow-delimiters mode from char at LOC."
-  (with-silent-modifications
-    (remove-text-properties loc (1+ loc)
-                            '(font-lock-face nil
-                              rear-nonsticky nil))))
+  (if (not (member 'face (text-properties-at loc)))
+      (with-silent-modifications
+        (remove-text-properties loc (1+ loc)
+                                '(font-lock-face nil
+                                                 rear-nonsticky nil)))))
 
 (make-local-variable 'rainbow-delimiters-escaped-char-predicate)
 (setq rainbow-delimiters-escaped-char-predicate nil)
