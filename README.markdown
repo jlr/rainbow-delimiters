@@ -7,7 +7,7 @@ Great care has been taken to make this mode FAST. You shouldn’t see any change
 
 You can customize the colors RainbowDelimiters uses. The default colors are intentionally subtle; they are unobtrusive enough to make the mode worth looking at even if you usually don’t like rainbow parentheses modes. Color themes Zenburn and Solarized have added their own faces for the mode.
 
-This is a fork of the official github repository for rainbow-delimiters.
+This is the official github repository for rainbow-delimiters.
 
 The latest <b>release</b> of rainbow-delimiters.el is always found here:
 <br />
